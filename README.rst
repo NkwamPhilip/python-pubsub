@@ -147,16 +147,12 @@ the topic, and subscribe to that, passing a callback function.
 
     import os
     from google.cloud import pubsub_v1
+    project_id = os.getenv('GOOGLE_CLOUD_PROJECT')
+    topic = 'MY_TOPIC_NAME'  # Set this to something appropriate
+    sub = 'MY_SUBSCRIPTION_NAME'  # Set this to something appropriate.
+    topic_name = f'projects/{project_id}/topics/{topic}'
 
-    topic_name = 'projects/{project_id}/topics/{topic}'.format(
-        project_id=os.getenv('GOOGLE_CLOUD_PROJECT'),
-        topic='MY_TOPIC_NAME',  # Set this to something appropriate.
-    )
-
-    subscription_name = 'projects/{project_id}/subscriptions/{sub}'.format(
-        project_id=os.getenv('GOOGLE_CLOUD_PROJECT'),
-        sub='MY_SUBSCRIPTION_NAME',  # Set this to something appropriate.
-    )
+    subscription_name = f'projects/{project_id}/subscriptions/{sub}'
 
     def callback(message):
         print(message.data)
