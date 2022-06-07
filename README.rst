@@ -110,9 +110,27 @@ messages to it
         project_id=os.getenv('GOOGLE_CLOUD_PROJECT'),
         topic='MY_TOPIC_NAME',  # Set this to something appropriate.
     )
+    
+    
     publisher.create_topic(name=topic_name)
     future = publisher.publish(topic_name, b'My first message!', spam='eggs')
     future.result()
+    
+    
+    #Updated according to new python release
+    
+    import os
+    from google.cloud import pubsub_v1
+
+    publisher = pubsub_v1.PublisherClient()
+    project_id = os.getenv('GOOGLE_CLOUD_PROJECT')
+    topic='MY_TOPIC_NAME'  # Set this to something appropriate.
+    topic_name = f"projects/{project_id}/topics/topic"
+
+    publisher.create_topic(name=topic_name)
+    future = publisher.publsh(topic_name, b'This is my first message!', spam='eggs')
+    future.result()
+
 
 To learn more, consult the `publishing documentation`_.
 
